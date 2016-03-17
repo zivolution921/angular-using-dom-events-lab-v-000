@@ -13,17 +13,15 @@ function Counter() {
 		},
 		controllerAs: 'ctrl',
 		link: function (scope, element, attr, ctrl) {
-			var el = element[0];
-
 			function incrementCount() {
 				ctrl.count++;
 				scope.$apply();
 			}
 
-			el.addEventListener('click', incrementCount);
+			element.on('click', incrementCount);
 
 			scope.$on('$destroy', function () {
-				el.removeEventListener('click', incrementCount);
+				element.off();
 			});
 		}
 	}
